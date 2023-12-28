@@ -3,8 +3,10 @@ process.on("uncaughtException", (err) => {
 });
 const dotenv = require("dotenv");
 const express = require("express");
+const cors = require ('cors');
 const path=require('path')
 const app = express();
+
 
 const filename = __filename;
 var __dirname = path.dirname(filename)
@@ -22,6 +24,7 @@ const {
 
 
 // middlewares
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 if (process.env.NODE_ENV === "development") {
