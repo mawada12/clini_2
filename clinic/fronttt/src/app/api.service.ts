@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from '../environments/environment';
+import { ApiData } from './api';
 @Injectable({
   providedIn: 'root',
 })
@@ -13,48 +14,48 @@ export class ApiService {
 
   doctorSignIn(data: any): Observable<any> {
     console.log("hello worlddd");
-    console.log(this.apiUrl);
-    return this.http.post(`${this.apiUrl}/api/DoctorSignIn`, data);
+    console.log(ApiData.baseUrl);
+    return this.http.post(`${ApiData.baseUrl}/api/DoctorSignIn`, data);
   }
 
   doctorSignUp(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/api/DoctorSignUp`, data);
+    return this.http.post(`${ApiData.baseUrl}/api/DoctorSignUp`, data);
   }
 
   
 
 
   patientSignUp(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/api/PatientSignUp`, data);
+    return this.http.post(`${ApiData.baseUrl}/api/PatientSignUp`, data);
   }
 
   patientSignIn(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/api/PatientSignIn`,  data);
+    return this.http.post(`${ApiData.baseUrl}/api/PatientSignIn`,  data);
   }
 
   showAllDoctors(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/PatientShowAllDoctors`);
+    return this.http.get(`${ApiData.baseUrl}/api/PatientShowAllDoctors`);
   }
 
   showDoctorSlots(doctorID: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/PatientShowDoctorSlots`, { params: { DoctorID: doctorID.toString() } });
+    return this.http.get(`${ApiData.baseUrl}/api/PatientShowDoctorSlots`, { params: { DoctorID: doctorID.toString() } });
   }
 
   reserveSlot(patientID: string, data: any): Observable<any> {
   
-    return this.http.put(`${this.apiUrl}/api/PatientReserveSlot/${patientID}`, data);
+    return this.http.put(`${ApiData.baseUrl}/api/PatientReserveSlot/${patientID}`, data);
 }
 
   
 
   updateAppointment(patientID: string, data: any) {
-    return this.http.put(`${this.apiUrl}/api/PatientUpdateAppointment/${patientID}`, data)
+    return this.http.put(`${ApiData.baseUrl}/api/PatientUpdateAppointment/${patientID}`, data)
       .pipe(
         catchError(this.handleError)
       );
   }
   setDoctorSchedule(doctorID: string, slotDateTime: string): Observable<any> {
-    const url = `${this.apiUrl}/api/DoctorSetSchedule/${doctorID}`;
+    const url = `${ApiData.baseUrl}/api/DoctorSetSchedule/${doctorID}`;
   
     const requestBody = { slotDateTime };
   
@@ -65,7 +66,7 @@ export class ApiService {
   
 
   cancelAppointment(patientID: string, slotID: number): Observable<any> {
-    const url = `${this.apiUrl}/api/PatientCancelAppointment/${patientID}`;
+    const url = `${ApiData.baseUrl}/api/PatientCancelAppointment/${patientID}`;
     const params = new HttpParams().set('slotId', slotID.toString());
   
     return this.http.delete(url, { params });
@@ -74,7 +75,7 @@ export class ApiService {
   
 
   showPatientAppointments(patientID: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/PatientShowAppointments/${patientID}`);
+    return this.http.get(`${ApiData.baseUrl}/api/PatientShowAppointments/${patientID}`);
   }
 
   private handleError(error: HttpErrorResponse) {
