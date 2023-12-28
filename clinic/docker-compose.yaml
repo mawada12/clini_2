@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  app:
+    build: .
+   
+    ports:
+      - '5000:5000'
+
+  front:
+    build: ../front
+    ports:
+      - '8080:80'    
+volumes:
+  data:
