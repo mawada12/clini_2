@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS Appointment (
   patientId INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (doctorId) REFERENCES Users(id),
-  FOREIGN KEY (patientId) REFERENCES Users(id)
+  FOREIGN KEY (doctorId) REFERENCES User(id),
+  FOREIGN KEY (patientId) REFERENCES User(id)
 );
 
 -- Add any additional constraints or indexes if needed
