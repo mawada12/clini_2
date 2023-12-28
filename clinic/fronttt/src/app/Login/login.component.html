@@ -1,0 +1,30 @@
+<div class="outer">
+    <div class="inner">
+      <h2>Login</h2>
+      <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+        <div class="mb-3">
+            <label for="userEmail" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="userEmail" formControlName="userEmail" required>
+          </div>
+          <!-- Password Input -->
+          <div class="mb-3">
+            <label for="userPassword" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="userPassword" formControlName="userPassword" required>
+          </div>
+        <div class="userType mb-3">
+          <label>User Type: </label> 
+          
+            <input type="radio" class="form-check-input" name="userType" (click)="setUserType('Doctor')" [checked]="userType === 'Doctor'">
+            <label>Doctor</label>
+            <input type="radio" class="form-check-input" name="userType" (click)="setUserType('Patient')" [checked]="userType === 'Patient'">
+            <label>Patient</label>
+
+        </div>
+        <div class="buttons">
+          <button type="submit" class="btn btn-primary">Login</button>
+          <button type="button" class="btn btn-primary" routerLink="/signup">Sign Up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
